@@ -27,5 +27,10 @@ class Student(models.Model):
     def __str__(self):
         return '<Student: {}>'.format(self.name)
 
+    # 把数据获取逻辑封装到Model层 ==> 增加一个类方法
+    @classmethod
+    def get_all(cls):
+        return cls.objects.all()
+
     class Meta:
         verbose_name = verbose_name_plural = "学员信息"

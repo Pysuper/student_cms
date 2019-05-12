@@ -7,7 +7,8 @@ from .models import Student
 
 
 def index(request):
-    students = Student.objects.all()
+    # students = Student.objects.all()
+    students = Student.get_all()
     # 对于用户提交的数据先做校验
     if request.method == "POST":
         form = StudentForm(request.POST)
@@ -35,4 +36,5 @@ def index(request):
         "form":form
     }
 
-    return render(request, 'index.html', context={"students":students})
+    # return render(request, 'index.html', context={"students":students})
+    return render(request, 'index.html', context=context)
