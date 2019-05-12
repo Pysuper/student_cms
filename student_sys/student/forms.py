@@ -35,6 +35,7 @@ class StudentForm(forms.ModelForm):
 
     class Meta:
         model = Student
+        # 这里fields定义的就是在页面上展示的
         fields = (
             "name", "sex", "profession", "email", "qq", "phone"
         )

@@ -16,8 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from student.views import index
+from student.views import IndexView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', index, name='index'),
+
+    # url(r'^$', index, name='index'),
+    url(r'^$', IndexView.as_view(), name='index')
+    # 使用类视图 ==> 这里的as_view()其实是对get和post方法的封装,可以理解为 >> 判断request.mothod的逻辑
 ]
