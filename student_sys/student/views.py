@@ -50,7 +50,7 @@ class IndexView(View):
     def get_context(self):
         students = Student.get_all()
         context = {
-            'student': students,
+            'students': students
         }
         return context
 
@@ -58,9 +58,14 @@ class IndexView(View):
         # 只处理get请求
         context = self.get_context()
         form = StudentForm()
+        # 使用get_content()获取了student数据 ==> 接着使用content.update()更新字典中的内容
         context.update({
             'form': form
         })
+        # >>     context = {
+        #         "students": students,
+        #         "form": form
+        #     }
         return render(request, self.template_name, context=context)
 
     def post(self, request):
