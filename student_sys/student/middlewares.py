@@ -1,7 +1,6 @@
 # 统计首页每次访问程序所消耗的时间 ==> Django接收请求到最终返回的时间
 import time
 from django.urls import reverse
-
 from django.utils.deprecation import MiddlewareMixin
 
 
@@ -13,6 +12,7 @@ class TimeMiddleware(MiddlewareMixin):
         # 如果返回HttpResponse : 接下来的处理方法只会执行process_response, 其他方法将不会执行
         ### 注意: 如果你的middleware是setting配置的MIDDLEWARE的第一个, 那么剩下的middleware也不会被执行 ###
         # 如果返回None :那么django会执行其他方法
+        self.start_time = time.time()
         return
 
     def process_view(self, request, func, *args, **kwargs):
@@ -44,4 +44,6 @@ class TimeMiddleware(MiddlewareMixin):
     def process_response(self, request, response):
         # 在所有流程都处理完之后，就会来到这
         # 逻辑和上面一样， 只是这里针对带有模板的response的处理
+        costed = time.time() - self.start_time
+        print('request to response cose : {:.2f}s'.format(costed))
         return response

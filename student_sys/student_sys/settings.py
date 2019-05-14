@@ -43,6 +43,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # 把自己重写的中间件放到setting中==> 【第一个】
+    'student.middlewares.TimeMiddleware',    # 这里面的process_request是接收到请求之后第一个执行的函数
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
