@@ -81,9 +81,13 @@ WSGI_APPLICATION = 'student_sys.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'USER':'root',
+        'NAME': 'root',
+        'TEST':{
+            'NAME':'mytestdatabase', # 在这里配置当前使用的测试数据库名称
+        },
+    },
 }
 
 

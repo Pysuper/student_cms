@@ -34,3 +34,8 @@ class Student(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = "学员信息"
+
+    # 增加这个方法 ==> 改进sex的显示，是使用1.2
+    @property
+    def sex_show(self):
+        return dict(self.SEX_ITEMS)[self.sex]
